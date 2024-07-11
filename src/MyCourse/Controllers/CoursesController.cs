@@ -6,12 +6,12 @@ namespace MyCourse.Controllers
     {
         public IActionResult Index()
         {
-            return Content("Sono Index");
+            return View();  // Prende la view in automatico dal file system, ma è anche possibile specificare un'altra view ad esempio con View("Detail")
         }
 
         public IActionResult Detail(string id) 
         {
-            return Content($"Sono Detail, ho ricevuto l'id {id}");
+            return View();
         }
 
         public IActionResult Search(string title)
