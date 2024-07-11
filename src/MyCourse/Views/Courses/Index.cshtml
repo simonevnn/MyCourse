@@ -6,26 +6,27 @@
 
 @for (int i=0;i<10;i++) // Inseriamo un'espressione C# in mezzo all'HTML, per generare 10 elementi uguali
 {
-<div class="row">
+<hr/>
+<div class="row course">
     <div class="col-md-1">  <!--Con md indichiamo che quando da smartphone gli elementi vanno uno sotto l'altro invece che di fianco come da desktop-->
-        <img src="~/logo.svg" width="50"/>
+        <img src="~/logo.svg" width="52" height="52"/>
     </div>
     <div class="col-md-5"> <!--col-5 significa che gli diamo 5/12 spazi delle colonne disponibili-->
         <h2>Titolo del corso</h2>
         <author>di Nome autore</author>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 rating">
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
         <i class="fas fa-star"></i>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 price">
         EUR 10,99 <br/> <s>EUR 12,99</s>
     </div>
-    <div class="col-md-2">  <!--Abbiamo utilizzato 12 spazi totali-->
-        <a class="btn btn-outline-primary" asp-action="Detail" asp-route-id="5">Dettaglio corso 5</a> <!--E' possibile omettere il controller a cui ci si riferisce se rimaniamo nello stesso contesto-->
+    <div class="col-md-2 d-flex align-items-center">  <!--Abbiamo utilizzato 12 spazi totali-->
+        <a class="btn btn-outline-primary" asp-action="Detail" asp-route-id="5">Dettaglio</a> <!--E' possibile omettere il controller a cui ci si riferisce se rimaniamo nello stesso contesto-->
     </div>
 </div>
 }
