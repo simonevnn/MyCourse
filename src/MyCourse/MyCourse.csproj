@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.6" />
+    <Compile Remove="Models\Services\Application\CourseService.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Services\Infrastructure\" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.6" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MyCourse.Models.Services.Application;
+using MyCourse.Models.Services.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,6 @@ builder.Services.AddMvc(MvcOptions =>
     MvcOptions.EnableEndpointRouting = false;   // Per rendere possibile app.UseMvc()
 });
 
-builder.Services.AddTransient<ICourseService, CourseService>(); // Informiamo .NET Core di costruire un oggetto CourseService qualora un controller richieda di utilizzare ICourseService
 /**
  * AddTransient() -> Crea una nuova istanza del servizio per ogni componente che ne ha bisogno. L'istanza viene rimossa dal Garbage Collector non appena il componente non ne ha più bisogno.
  * Lo utilizziamo quando i servizi non sono particolarmente complessi e sono facili da "costruire".
@@ -24,6 +24,8 @@ builder.Services.AddTransient<ICourseService, CourseService>(); // Informiamo .N
  * Questo perché ASP .NET Core lavora in multi-threading, ed è quindi necessario prevenire problemi di race condition. 
  * Grazie alla classe Interlocked è possibile regolare queste situazioni.
  */
+builder.Services.AddTransient<ICourseService, AdoNetCourseService>(); // Informiamo .NET Core di costruire un oggetto CourseService qualora un controller richieda di utilizzare ICourseService
+builder.Services.AddTransient<IDatabaseAccessor, SqliteDatabaseAccessor>();
 
 var app = builder.Build();
 
