@@ -1,17 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyCourse.Models.Application;
+using MyCourse.Models.ViewModels;
 
 namespace MyCourse.Controllers
 {
     public class CoursesController : Controller
     {
-        public IActionResult Index()
+        private readonly CourseService courseService;
+
+        public CoursesController(CourseService courseService) 
         {
-            return View();  // Prende la view in automatico dal file system, ma è anche possibile specificare un'altra view ad esempio con View("Detail")
+            this.courseService = courseService; // Dependency Injection per far capire al controller quale servizio applicativo utilizzare
         }
 
-        public IActionResult Detail(string id) 
+        public IActionResult Index()
         {
-            return View();
+            ViewData["Title"] = "Catalogo dei corsi";   // In questo caso il titolo della pagina in maniera statica
+
+            List<CourseViewModel> courses = courseService.GetCourses();    // Recuperiamo la lista dei corsi dal Service
+                
+            return View(courses);  // View() prende la view in automatico dal file system, ma è anche possibile specificare un'altra view ad esempio con View("Detail")
+        }
+
+        public IActionResult Detail(int id) 
+        {
+            CourseDetailViewModel viewModel = courseService.GetCourse(id);
+            
+            ViewData["Title"] = viewModel.Title;    // Impostiamo il titolo della pagina web con il nome del corso
+            
+            return View(viewModel);
         }
 
         public IActionResult Search(string title)
