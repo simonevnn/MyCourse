@@ -6,9 +6,16 @@ namespace MyCourse.Controllers
 {
     public class CoursesController : Controller
     {
+        private readonly CourseService courseService;
+
+        public CoursesController(CourseService courseService) 
+        {
+            this.courseService = courseService; // Dependency Injection per far capire al controller quale servizio applicativo utilizzare
+        }
+
         public IActionResult Index()
         {
-            var courseService = new CourseService();    // Possiamo scrivere direttamente var per evitare di scrivere sempre il tipo
+            ViewData["Title"] = "Catalogo dei corsi";   // In questo caso il titolo della pagina in maniera statica
 
             List<CourseViewModel> courses = courseService.GetCourses();    // Recuperiamo la lista dei corsi dal Service
                 
@@ -17,10 +24,10 @@ namespace MyCourse.Controllers
 
         public IActionResult Detail(int id) 
         {
-            var courseService = new CourseService();
-
             CourseDetailViewModel viewModel = courseService.GetCourse(id);
-
+            
+            ViewData["Title"] = viewModel.Title;    // Impostiamo il titolo della pagina web con il nome del corso
+            
             return View(viewModel);
         }
 

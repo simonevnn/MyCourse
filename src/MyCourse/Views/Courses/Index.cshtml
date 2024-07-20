@@ -3,7 +3,7 @@
 }
 -->
 @model List<CourseViewModel>    // Rendiamo la View fortemente tipizzata (gli using sono stati spostati in _ViewImports)
-<h1>Catalogo dei corsi</h1>
+<h1>@ViewData["Title"]</h1>
 
 @foreach (CourseViewModel course in Model) // Inseriamo un'espressione C# in mezzo all'HTML, l'oggetto Model viene riconosciuto dall'annotazione iniziale
 {

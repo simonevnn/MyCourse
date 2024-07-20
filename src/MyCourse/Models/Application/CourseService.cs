@@ -8,7 +8,7 @@ namespace MyCourse.Models.Application
     {
         public List<CourseViewModel> GetCourses()
         {
-            var courseList = new List<CourseViewModel>();
+            var courseList = new List<CourseViewModel>();   // Possiamo scrivere direttamente var per evitare di scrivere sempre il tipo
             var rand = new Random();
 
             for (int i = 1; i<=20; i++)

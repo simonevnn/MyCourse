@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MyCourse.Models.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,8 @@ builder.Services.AddMvc(MvcOptions =>
 {
     MvcOptions.EnableEndpointRouting = false;   // Per rendere possibile app.UseMvc()
 });
+
+builder.Services.AddTransient<CourseService>(); // Diciamo a .NET Core che deve prepararsi ad utilizzare oggetti di tipo CourseService
 
 var app = builder.Build();
 
