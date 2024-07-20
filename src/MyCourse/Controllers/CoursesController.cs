@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyCourse.Models.Application;
+using MyCourse.Models.Services.Application;
 using MyCourse.Models.ViewModels;
 
 namespace MyCourse.Controllers
 {
     public class CoursesController : Controller
     {
-        private readonly CourseService courseService;
+        private readonly ICourseService courseService;
 
-        public CoursesController(CourseService courseService) 
+        public CoursesController(ICourseService courseService) 
         {
             this.courseService = courseService; // Dependency Injection per far capire al controller quale servizio applicativo utilizzare
         }
