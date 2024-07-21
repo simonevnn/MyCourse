@@ -13,18 +13,18 @@ namespace MyCourse.Controllers
             this.courseService = courseService; // Dependency Injection per far capire al controller quale servizio applicativo utilizzare
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             ViewData["Title"] = "Catalogo dei corsi";   // In questo caso il titolo della pagina in maniera statica
 
-            List<CourseViewModel> courses = courseService.GetCourses();    // Recuperiamo la lista dei corsi dal Service
+            List<CourseViewModel> courses = await courseService.GetCoursesAsync();    // Recuperiamo la lista dei corsi dal Service
                 
             return View(courses);  // View() prende la view in automatico dal file system, ma è anche possibile specificare un'altra view ad esempio con View("Detail")
         }
 
-        public IActionResult Detail(int id) 
+        public async Task<IActionResult> Detail(int id) 
         {
-            CourseDetailViewModel viewModel = courseService.GetCourse(id);
+            CourseDetailViewModel viewModel = await courseService.GetCourseAsync(id);
             
             ViewData["Title"] = viewModel.Title;    // Impostiamo il titolo della pagina web con il nome del corso
             

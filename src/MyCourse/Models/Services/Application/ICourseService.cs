@@ -7,7 +7,7 @@ namespace MyCourse.Models.Services.Application
      */
     public interface ICourseService
     {
-        List<CourseViewModel> GetCourses(); // Queste proprietà sono implicitamente public
-        CourseDetailViewModel GetCourse(int id);
+        Task<List<CourseViewModel>> GetCoursesAsync(); // Queste proprietà sono implicitamente public
+        Task<CourseDetailViewModel> GetCourseAsync(int id);
     }
 }
