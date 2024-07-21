@@ -5,7 +5,7 @@ namespace MyCourse.Models.Services.Infrastructure
 {
     public class SqliteDatabaseAccessor : IDatabaseAccessor
     {
-        public DataSet Query(FormattableString formattableQuery)
+        public async Task<DataSet> QueryAsync(FormattableString formattableQuery)
         {
             // CREAZIONE STRINGA QUERY (con parametri)
             var queryArgs = formattableQuery.GetArguments();    // Prendiamo i valori inseriti nella stringa tramite interpolazione
@@ -23,13 +23,13 @@ namespace MyCourse.Models.Services.Infrastructure
             // CONNESSIONE ED ESECUZIONE
             using (var conn = new SqliteConnection("Data Source=Data/MyCourse.db")) // Il blocco using esegue in automatico (alla fine delle istruzioni) il metodo .Dispose() di ogni oggetto di una classe che implementa IDisposable
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 using (var cmd = new SqliteCommand(query, conn))   // Passiamo la query e la connessione già 
                 {
                     cmd.Parameters.AddRange(sqliteParams);  // Inseriamo i parametri all'interno della stringa query
 
-                    using(var reader = cmd.ExecuteReader())
+                    using(var reader = await cmd.ExecuteReaderAsync())
                     {
                         var dataSet = new DataSet();
 
