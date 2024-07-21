@@ -15,7 +15,7 @@ namespace MyCourse.Models.Services.Application
 
         public CourseDetailViewModel GetCourse(int id)
         {
-            string query = @$"
+            FormattableString query = @$"
                 SELECT Id, Title, Description,ImagePath, Author, Rating, FullPrice_Amount, FullPrice_Currency, CurrentPrice_Amount, CurrentPrice_Currency
                 FROM Courses
                 WHERE Id={id};
@@ -49,7 +49,7 @@ namespace MyCourse.Models.Services.Application
 
         public List<CourseViewModel> GetCourses()
         {
-            string query = @"
+            FormattableString query = @$"
                 SELECT Id, Title, ImagePath, Author, Rating, FullPrice_Amount, FullPrice_Currency, CurrentPrice_Amount, CurrentPrice_Currency
                 FROM Courses
             ";

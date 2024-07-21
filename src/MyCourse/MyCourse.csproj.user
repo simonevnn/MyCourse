@@ -4,6 +4,6 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>MyCourse</ActiveDebugProfile>
+    <ActiveDebugProfile>Watch</ActiveDebugProfile>
   </PropertyGroup>
 </Project>
